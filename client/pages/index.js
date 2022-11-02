@@ -1,3 +1,5 @@
+import { GameCard } from "../components/GameCard"
+
 export default function Home() {
   return (
     <>
@@ -6,6 +8,7 @@ export default function Home() {
       </div>
       <div className="text-3xl">
         import components for the homepage stuff and yada yada you know here.
+        <GameCard></GameCard>
       </div>
     </>
   )
