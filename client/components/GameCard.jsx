@@ -4,16 +4,16 @@ export const GameCard = (props) => {
 
 
   //Variables for quick change of values in cards
-  const gameName = 'Rimworld';
+  const gameName = props.name
   //Game Genres Array. Will be sliced to display the first 2.
-  const gameGenres = ['GG1', 'GG2', 'GG3','GG1', 'GG2', 'GG3'];
-  const gameImg = "https://cdn.akamai.steamstatic.com/steam/apps/294100/header.jpg?t=1666905455";
-  const priceOfGame = "$21.99";
-  const isSale = true
+  const gameGenres = props.genres;
+  const gameImg = props.image;
+  const priceOfGame = props.price;
+  const isSale = props.isSale;
 
 
   return (
-    <div data-theme='dark' className="card w-96  shadow-xl m-4">
+    <div data-theme='dark' className="card w-96 shadow-xl m-4">
       <figure><img src={gameImg} alt={gameName} /></figure>
       <div className="card-body">
         <div className="game-details flex">

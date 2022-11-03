@@ -1,6 +1,39 @@
 import { GameCard } from "../components/GameCard"
 import axios from "axios"
 
+
+//Example Data
+const games = [
+  //Template
+  // {
+  //   name: '',
+  //   image:'',
+  //   price:'',
+  //   genres: [],
+  //   isSale: true,
+  // },
+  {
+    name: 'Cyberpunk 2077',
+    image:'https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg?t=1663663573',
+    price:'$79.99',
+    genres: ['Cyberpunk', 'Open World', 'RPG', 'Nudity'],
+    isSale: true,
+  },
+  {
+    name: 'Plateup!',
+    image:'https://cdn.akamai.steamstatic.com/steam/apps/1599600/header_alt_assets_1.jpg?t=1666703697',
+    price:'$20.49',
+    genres:['Co-op', 'Management', 'Roguelite'],
+    isSale: true,
+  },
+  {
+    name: 'Rimworld',
+    image:'https://cdn.akamai.steamstatic.com/steam/apps/294100/header.jpg?t=1666905455',
+    price:'$39.99',
+    genres: ['Colony Sim', 'Base Building', 'Survival', 'Strategy'],
+    isSale: true,
+  },
+]
 export default function Home() {
 
   //Affected by CORS - will come back to this.
@@ -43,9 +76,18 @@ export default function Home() {
       <div className="font-bold">
         Edit main element in layout.jsx to configure width/padding of the section (minus navbar and footer) or just switch fragment in layout to a div then add if you want to configure whole page including those two.
       </div>
-      <div className="text-3xl">
-        import components for the homepage stuff and yada yada you know here.
-        <GameCard></GameCard>
+      <div className="text-3xl flex flex-col flex-wrap lg:flex-row ">
+        {games.map( game => {
+          return (
+          <GameCard 
+          name={game.name}
+          image={game.image}
+          genres={game.genres}
+          price={game.price}
+          isSale={game.isSale}
+          />
+          )
+        })}
       </div>
     </>
   )
