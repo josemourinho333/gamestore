@@ -31,9 +31,9 @@ export const GameCard = (props) => {
           <div className="genre-tags flex-col w-3/5">
             <p className="text-base">Genres</p>
             {/*Slice genre array to display first two*/}
-            {gameGenres.slice(0,2).map(element => {
+            {gameGenres.slice(0,2).map((element, index) => {
               return (
-                <div className="badge badge-outline badge-accent w-1/4 mr-1">{element}</div>
+                <div key={index} className="badge badge-outline badge-accent w-1/4 mr-1">{element}</div>
               );
             })}
             {/* A clickable badge to indicate there are more genres. Takes you to game page.  */}
