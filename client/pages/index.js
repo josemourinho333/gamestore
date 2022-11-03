@@ -13,6 +13,13 @@ const games = [
   //   isSale: true,
   // },
   {
+    name: 'Lost Ark',
+    image:'https://cdn.akamai.steamstatic.com/steam/apps/1599340/header.jpg?t=1666630324',
+    price:'Free',
+    genres: ['MMORPG'],
+    isSale: true,
+  },
+  {
     name: 'Cyberpunk 2077',
     image:'https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg?t=1663663573',
     price:'$79.99',

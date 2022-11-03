@@ -17,7 +17,7 @@ export const GameCard = (props) => {
       <figure><img src={gameImg} alt={gameName} /></figure>
       <div className="card-body">
         <div className="game-details flex">
-          <h2 className="card-title text-xl">
+          <h2 className="card-title text-xl flex flex-wrap w-1/2">
             {gameName}
             {/* If the game is on sale somewhere, show this badge */}
             {isSale && <div className="badge badge-accent">ON SALE</div>}
@@ -31,16 +31,16 @@ export const GameCard = (props) => {
           <div className="genre-tags flex-col w-3/5">
             <p className="text-base">Genres</p>
             {/*Slice genre array to display first two*/}
-            {gameGenres.slice(0,2).map((element, index) => {
+            {gameGenres.slice(0,5).map((element, index) => {
               return (
-                <div key={index} className="badge badge-outline badge-accent w-1/4 mr-1">{element}</div>
+                <div key={index} className="badge badge-outline badge-accent w-fit mr-1">{element}</div>
               );
             })}
             {/* A clickable badge to indicate there are more genres. Takes you to game page.  */}
             {gameGenres.length > 2 && <span className="badge badge-outline badge-accent w-1/4">...</span>}
           </div>
 
-          <div className="card-actions flex-col justify-end items-end w-2/5 ">
+          <div className="card-actions flex-col justify-start items-end w-2/5 ">
             <button className="btn btn-secondary w-1/2">Buy</button>
           </div>
         </div>
