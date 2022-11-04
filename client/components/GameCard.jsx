@@ -21,8 +21,8 @@ export const GameCard = (props) => {
             <h2 className="card-title text-xl flex w-fit">
               {gameName}
             </h2>
-            {/* If the game is on sale somewhere, show this badge */}
-            {isSale && <div className="badge badge-accent ">ON SALE</div>}
+            {/* If the game is on sale somewhere, show sale badge, otherwise place invisible badge */}
+            {isSale ? <div className="badge badge-accent ">ON SALE</div> : <div className="badge badge-accent opacity-0">NOT ON SALE</div>}
 
           </div>
           {/* Lowest price of game */}
@@ -33,9 +33,9 @@ export const GameCard = (props) => {
           <p className="genre-title text-base">Genres: </p>
           <div className="genre-section flex flex-wrap">
             {/*Slice genre array to display first two*/}
-            {gameGenres.slice(0,2).map((element, index) => {
+            {gameGenres.slice(0,3).map((element, index) => {
               return (
-                <div key={index} className="badge badge-outline badge-accent w-fit mr-1">{element}</div>
+                <div key={index} className="badge badge-outline badge-accent w-fit mr-1 my-1.5">{element}</div>
               );
             })}
             {/* A clickable badge to indicate there are more genres. Takes you to game page.  */}

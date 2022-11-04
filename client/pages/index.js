@@ -17,7 +17,7 @@ const games = [
     image:'https://cdn.akamai.steamstatic.com/steam/apps/1599340/header.jpg?t=1666630324',
     price:'Free',
     genres: ['MMORPG'],
-    isSale: true,
+    isSale: false,
   },
   {
     name: 'Cyberpunk 2077',
@@ -84,9 +84,10 @@ export default function Home() {
         Edit main element in layout.jsx to configure width/padding of the section (minus navbar and footer) or just switch fragment in layout to a div then add if you want to configure whole page including those two.
       </div>
       <div className="text-3xl flex flex-col flex-wrap lg:flex-row ">
-        {games.map( game => {
+        {games.map( (game, index) => {
           return (
-          <GameCard 
+          <GameCard
+          key={index}
           name={game.name}
           image={game.image}
           genres={game.genres}
