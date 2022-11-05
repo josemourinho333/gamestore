@@ -13,7 +13,7 @@ export const GameCard = (props) => {
 
 
   return (
-    <div data-theme='dark' className="card w-96 shadow-xl m-2">
+    <div data-theme='dark' className="card w-80 shadow-xl m-2">
       <figure><img src={gameImg} alt={gameName} /></figure>
       <div className="card-body">
         <div className="game-details flex">

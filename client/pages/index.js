@@ -99,8 +99,8 @@ export default function Home() {
               {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
               <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">
                 {index === 0 ?
-                  <a href={`#slide${games.length - 1}`} className="btn btn-circle mr-4">❮</a> :
-                  <a href={`#slide${index - 1}`} className="btn btn-circle mr-4">❮</a>
+                  <a href={`#slide${games.length - 1}`} className="btn btn-circle">❮</a> :
+                  <a href={`#slide${index - 1}`} className="btn btn-circle">❮</a>
                 }
                 {index === games.length - 1 ?
                   <a href="#slide0" className="btn btn-circle">❯</a> :
