@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 
@@ -6,11 +6,24 @@ const Games = () => {
   const query = gql`
     query GetGames {
       game @rest(type: "Game", path: "deals") {
+        internalName,
+        title,
+        metacriticlink,
+        dealID,
+        storeID,
         gameID,
+        salePrice,
+        normalPrice,
+        isOnSale,
+        savings,
+        metacriticScore,
+        steamRatingText,
+        steamRatingPercent,
+        steamRatingCount,
         steamAppID,
-        cheapest,
-        cheapestDealID,
-        external,
+        releaseDate,
+        lastChange,
+        dealRating,
         thumb
       }
     }
