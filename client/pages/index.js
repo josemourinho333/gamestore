@@ -1,5 +1,6 @@
 import { GameCard } from "../components/GameCard";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 //Example Data
@@ -41,41 +42,42 @@ const games = [
     isSale: true,
   },
 ];
+
 export default function Home() {
 
-  //Affected by CORS - will come back to this.
+  const [gamers, setGamers] = useState([])
 
-  // const clientId = process.env.NEXT_PUBLIC_CLIENT_ID
-  // const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
-  // let accessToken; 
+  const getVideoGames = () => {
+    var config = {
+      method: 'get',
+      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15',
+      headers: { }
+    };
+    
+    axios(config)
+    .then(function (response) {
+      // console.log(response.data)
+      setGamers(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-  // const getAccessToken = async() =>{
-  //   const authURL = `https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`
-  //   await axios.post(authURL)
-  //   .then((response)=>{accessToken = response.data.access_token})
-  // }
+  }
 
-  // const getVideoGames = async() => {
-  //   await axios({
-  //     url: "https://api.igdb.com/v4/games",
-  //     method: 'POST',
-  //     headers: {
-  //         'Accept': 'application/json',
-  //         'Client-ID': clientId,
-  //         'Authorization': `Bearer ${accessToken}`,
-  //     },
-  //     data: 'name'
-  //   })
-  //     .then(response => {
-  //         console.log(response.data);
-  //     })
-  //     .catch(err => {
-  //         console.error(err);
-  //     });
-  // }
+  useEffect(()=>{
+    getVideoGames();
 
-  // getAccessToken();
-  // getVideoGames();
+  },[])
+
+
+
+ 
+
+
+
+
+
 
 
   return (
@@ -85,24 +87,25 @@ export default function Home() {
       </div>
 
       {/* AREA FOR HOT DEALS */}
+      {console.log(gamers)}
       <div className="carousel w-full">
-        {games.map((game, index) => {
+        {gamers.map((game, index) => {
           return (
             <div id={`slide${index}`} key={index} className="carousel-item flex justify-center relative w-full">
               <GameCard
-                name={game.name}
-                image={game.image}
-                genres={game.genres}
-                price={game.price}
-                isSale={game.isSale}
+                name={game.title}
+                image={game.thumb}
+                genres={[]}
+                price={game.normalPrice}
+                isSale={game.salePrice}
               />
               {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
               <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">
                 {index === 0 ?
-                  <a href={`#slide${games.length - 1}`} className="btn btn-circle">❮</a> :
+                  <a href={`#slide${gamers.length - 1}`} className="btn btn-circle">❮</a> :
                   <a href={`#slide${index - 1}`} className="btn btn-circle">❮</a>
                 }
-                {index === games.length - 1 ?
+                {index === gamers.length - 1 ?
                   <a href="#slide0" className="btn btn-circle">❯</a> :
                   <a href={`#slide${index + 1}`} className="btn btn-circle">❯</a>
                 }
@@ -111,7 +114,6 @@ export default function Home() {
 
           );
         })}
-
       </div>
 
 
