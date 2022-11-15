@@ -50,7 +50,7 @@ export default function Home() {
   const getVideoGames = () => {
     var config = {
       method: 'get',
-      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15',
+      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1&lowerPrice=37&onSale=flase',
       headers: { }
     };
     
@@ -96,8 +96,8 @@ export default function Home() {
                 name={game.title}
                 image={game.thumb}
                 genres={[]}
-                price={game.normalPrice}
-                isSale={game.salePrice}
+                price={game.salePrice}
+                isSale={game.isOnSale}
               />
               {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
               <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">

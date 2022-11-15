@@ -22,7 +22,7 @@ export const GameCard = (props) => {
               {gameName}
             </h2>
             {/* If the game is on sale somewhere, show sale badge, otherwise place invisible badge */}
-            {isSale ? <div className="badge badge-accent ">ON SALE</div> : <div className="badge badge-accent opacity-0">NOT ON SALE</div>}
+            {isSale !=='0' ? <div className="badge badge-accent ">ON SALE</div> : <div className="badge badge-accent opacity-0">NOT ON SALE</div>}
 
           </div>
           {/* Lowest price of game */}
