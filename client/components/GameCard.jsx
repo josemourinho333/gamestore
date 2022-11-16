@@ -18,7 +18,7 @@ export const GameCard = (props) => {
       <div className="card-body flex flex-col">
         <div className="game-details flex">
           <div className="title-section">
-            <h2 className="card-title text-xl flex items-start max-w-10/12 max-h-14 overflow-auto">
+            <h2 className="card-title text-xl flex items-start max-w-10/12 max-h-14 overflow-hidden">
               {gameName}
             </h2>
 

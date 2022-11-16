@@ -86,6 +86,9 @@ export default function Home() {
         Edit main element in layout.jsx to configure width/padding of the section (minus navbar and footer) or just switch fragment in layout to a div then add if you want to configure whole page including those two.
       </div>
 
+      <div id="hot-deals" className="flex justify-center font-bold">
+        HOT DEALS
+      </div>
       {/* AREA FOR HOT DEALS */}
       <div className="carousel w-full">
         {gamers.map((game, index) => {
@@ -118,20 +121,20 @@ export default function Home() {
 
       {/* Saved for now. Shows all gards in a given array */}
 
-      {/* <div className="text-3xl flex flex-col flex-wrap align-center lg:flex-row justify-center">
-        {games.map( (game, index) => {
+      <div className="text-3xl flex flex-col flex-wrap align-center lg:flex-row justify-center">
+        {gamers.map( (game, index) => {
           return (
           <GameCard
           key={index}
-          name={game.name}
-          image={game.image}
-          genres={game.genres}
-          price={game.price}
-          isSale={game.isSale}
+          name={game.title}
+          image={game.thumb}
+          genres={[]}
+          price={game.salePrice}
+          isSale={game.isOnSale}
           />
           )
         })}
-      </div> */}
+      </div>
     </>
   );
 }
