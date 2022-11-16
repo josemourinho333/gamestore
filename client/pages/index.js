@@ -48,13 +48,13 @@ export default function Home() {
   const [gamers, setGamers] = useState([])
 
   const getVideoGames = () => {
-    var config = {
+    const configCheapshark = {
       method: 'get',
-      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1&lowerPrice=37&onSale=flase',
+      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1',
       headers: { }
     };
     
-    axios(config)
+    axios(configCheapshark)
     .then(function (response) {
       // console.log(response.data)
       setGamers(response.data)
@@ -87,7 +87,6 @@ export default function Home() {
       </div>
 
       {/* AREA FOR HOT DEALS */}
-      {console.log(gamers)}
       <div className="carousel w-full">
         {gamers.map((game, index) => {
           return (
