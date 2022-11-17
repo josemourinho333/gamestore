@@ -10,10 +10,14 @@ export const GameCard = (props) => {
   const gameImg = props.image;
   const priceOfGame = props.price;
   const isSale = props.isSale;
+  const gameStore = `${String(props.gameStore).toUpperCase()} DEALS`
 
 
   return (
     <div data-theme='dark' className="card w-80 shadow-xl m-2">
+      <div id="hot-deals" className="flex justify-center font-bold">
+        {gameStore}
+      </div>
       <figure className="flex align-center w-full h-80"><img className="max-w-full p-2.5 max-h-80" src={gameImg} alt={gameName} /></figure>
       <div className="card-body flex flex-col">
         <div className="game-details flex">

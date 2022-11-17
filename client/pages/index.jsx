@@ -45,9 +45,11 @@ const games = [
 
 export default function Home() {
 
-  const [gamers, setGamers] = useState([])
+  const [steamGames, setSteamGames] = useState([]) // Store Id 1
+  const [humbleGames, setHumbleGames] = useState([]) // Store Id 11
+  const [epicGames, setEpicGames] = useState([]) //Store ID 25
 
-  const getVideoGames = (storeID) => {
+  const getVideoGames = (storeID, stateSetter) => {
 
 
     const url = storeID ? `https://www.cheapshark.com/api/1.0/deals?storeID=${storeID}` : 'https://www.cheapshark.com/api/1.0/deals'
@@ -61,7 +63,7 @@ export default function Home() {
     axios(configCheapshark)
     .then(function (response) {
       // console.log(response.data)
-      setGamers(response.data)
+      stateSetter(response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -70,7 +72,9 @@ export default function Home() {
   }
 
   useEffect(()=>{
-    getVideoGames();
+    getVideoGames(1, setSteamGames);
+    getVideoGames(11, setHumbleGames);
+    getVideoGames(25, setEpicGames);
 
   },[])
 
@@ -86,34 +90,37 @@ export default function Home() {
 
   return (
     <>
-      <div className="font-bold">
+      {/* <div className="font-bold">
         Edit main element in layout.jsx to configure width/padding of the section (minus navbar and footer) or just switch fragment in layout to a div then add if you want to configure whole page including those two.
-      </div>
+      </div> */}
 
-      <div id="hot-deals" className="flex justify-center font-bold">
-        HOT DEALS
-      </div>
-      {/* AREA FOR HOT DEALS */}
+      
+      {/* AREA FOR STEAM DEALS */}
+      {/* <div id="hot-deals" className="flex text-white justify-center font-bold">
+        STEAM DEALS
+      </div> */}
+  
       <div className="carousel w-full">
-        {gamers.map((game, index) => {
+        {steamGames.map((game, index) => {
           return (
-            <div id={`slide${index}`} key={index} className="carousel-item flex justify-center relative w-full">
+            <div id={`slideSteam${index}`} key={index} className="carousel-item flex justify-center relative w-full">
               <GameCard
                 name={game.title}
                 image={game.thumb}
                 genres={[]}
                 price={game.salePrice}
                 isSale={game.isOnSale}
+                gameStore={'steam store'}
               />
               {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
               <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">
                 {index === 0 ?
-                  <a href={`#slide${gamers.length - 1}`} className="btn btn-circle">❮</a> :
-                  <a href={`#slide${index - 1}`} className="btn btn-circle">❮</a>
+                  <a href={`#slideSteam${steamGames.length - 1}`} className="btn btn-circle">❮</a> :
+                  <a href={`#slideSteam${index - 1}`} className="btn btn-circle">❮</a>
                 }
-                {index === gamers.length - 1 ?
-                  <a href="#slide0" className="btn btn-circle">❯</a> :
-                  <a href={`#slide${index + 1}`} className="btn btn-circle">❯</a>
+                {index === steamGames.length - 1 ?
+                  <a href="#slideSteam0" className="btn btn-circle">❯</a> :
+                  <a href={`#slideSteam${index + 1}`} className="btn btn-circle">❯</a>
                 }
               </div>
             </div>
@@ -122,21 +129,69 @@ export default function Home() {
         })}
       </div>
 
-
-      {/* Saved for now. Shows all gards in a given array */}
-
-      <div className="text-3xl flex flex-col flex-wrap align-center lg:flex-row justify-center">
-        {gamers.map( (game, index) => {
+      {/* AREA FOR HUMBLE STORE DEALS */}
+      {/* <div id="hot-deals" className="flex justify-center font-bold">
+        HUMBLE STORE DEALS
+      </div> */}
+      <div className="carousel w-full">
+        {humbleGames.map((game, index) => {
           return (
-          <GameCard
-          key={index}
-          name={game.title}
-          image={game.thumb}
-          genres={[]}
-          price={game.salePrice}
-          isSale={game.isOnSale}
-          />
-          )
+            <div id={`slideHumble${index}`} key={index} className="carousel-item flex justify-center relative w-full">
+              <GameCard
+                name={game.title}
+                image={game.thumb}
+                genres={[]}
+                price={game.salePrice}
+                isSale={game.isOnSale}
+                gameStore={'humble games store'}
+              />
+              {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
+              <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">
+                {index === 0 ?
+                  <a href={`#slideHumble${steamGames.length - 1}`} className="btn btn-circle">❮</a> :
+                  <a href={`#slideHumble${index - 1}`} className="btn btn-circle">❮</a>
+                }
+                {index === steamGames.length - 1 ?
+                  <a href="#slideHumble0" className="btn btn-circle">❯</a> :
+                  <a href={`#slideHumble${index + 1}`} className="btn btn-circle">❯</a>
+                }
+              </div>
+            </div>
+
+          );
+        })}
+      </div>
+
+      {/* AREA FOR EPIC STORE DEALS */}
+      {/* <div id="hot-deals" className="flex justify-center font-bold">
+        EPIC GAMES DEALS
+      </div> */}
+      <div className="carousel w-full">
+        {epicGames.map((game, index) => {
+          return (
+            <div id={`slideEpic${index}`} key={index} className="carousel-item flex justify-center relative w-full">
+              <GameCard
+                name={game.title}
+                image={game.thumb}
+                genres={[]}
+                price={game.salePrice}
+                isSale={game.isOnSale}
+                gameStore={'epic games store'}
+              />
+              {/* HAVE TO IMPLEMENT WAY TO ONLY SHOW THIS ON DESKTOP VIEW */}
+              <div className="absolute flex justify-center space-x-96 transform -translate-y-1/2 left-5 right-5 top-1/2">
+                {index === 0 ?
+                  <a href={`#slideEpic${steamGames.length - 1}`} className="btn btn-circle">❮</a> :
+                  <a href={`#slideEpic${index - 1}`} className="btn btn-circle">❮</a>
+                }
+                {index === steamGames.length - 1 ?
+                  <a href="#slideEpic0" className="btn btn-circle">❯</a> :
+                  <a href={`#slideEpic${index + 1}`} className="btn btn-circle">❯</a>
+                }
+              </div>
+            </div>
+
+          );
         })}
       </div>
     </>
