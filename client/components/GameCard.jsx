@@ -14,7 +14,7 @@ export const GameCard = (props) => {
 
   return (
     <div data-theme='dark' className="card w-80 shadow-xl m-2">
-      <figure><img className="w-full" src={gameImg} alt={gameName} /></figure>
+      <figure className="flex align-center w-full h-80"><img className="max-w-full p-2.5 max-h-80" src={gameImg} alt={gameName} /></figure>
       <div className="card-body flex flex-col">
         <div className="game-details flex">
           <div className="title-section">

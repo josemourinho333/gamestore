@@ -47,10 +47,14 @@ export default function Home() {
 
   const [gamers, setGamers] = useState([])
 
-  const getVideoGames = () => {
+  const getVideoGames = (storeID) => {
+
+
+    const url = storeID ? `https://www.cheapshark.com/api/1.0/deals?storeID=${storeID}` : 'https://www.cheapshark.com/api/1.0/deals'
+
     const configCheapshark = {
       method: 'get',
-      url: 'https://www.cheapshark.com/api/1.0/deals?storeID=1',
+      url,
       headers: { }
     };
     
